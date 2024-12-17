@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -122,6 +123,9 @@ public class Player : MonoBehaviour
         {
             footstepTimer = 0;
         }
+
+        
+
     }
 
     private void FixedUpdate()
@@ -135,6 +139,14 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         print(other.relativeVelocity);
+
+       
+
+        if (other.gameObject.CompareTag("Lava"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
     }
 
     private void OnDrawGizmos()

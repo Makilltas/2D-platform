@@ -7,7 +7,10 @@ public class EnemyController : MonoBehaviour
     public float chaseDistance = 10f; 
     public float detectionRange = 5f;
     public int minDamage = 1;
-    public int maxDamage = 2; 
+    public int maxDamage = 2;
+
+
+    public int eHealth = 3;
 
     private Vector3 startPosition;
     private bool movingRight = true;
@@ -68,11 +71,17 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player"))
+        
+
+        if (collision.gameObject.CompareTag("Finish"))
         {
-           
-            int damage = Random.Range(minDamage, maxDamage + 1);
-            playerHealth.TakeDamage(damage); 
+            eHealth--;
+            print("hit");
+            if (eHealth == 0)
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 }
